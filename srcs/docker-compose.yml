@@ -1,6 +1,7 @@
-version: '3.8'
+version: '3.7'
 
 services:
+
   web_server:
     build: ./requirements/nginx
     image: web_server
@@ -39,9 +40,9 @@ services:
     container_name: site
     env_file:
       - .env
-    depends_on:
-      database:
-        condition: service_healthy
+    # depends_on:
+    #   database:
+    #     condition: service_healthy
     volumes:
       - wp:/var/www/html
     networks:
@@ -54,13 +55,13 @@ volumes:
     name: db
     driver_opts:
       type: none
-      device: /home/mtavares/data/mysql
+      device: /home/mbarreto/data/mysql
       o: bind
   wp:
     name: wp
     driver_opts:
       type: none
-      device: /home/mtavares/data/wordpress
+      device: /home/mbarreto/data/wordpress
       o: bind
 
 networks:
